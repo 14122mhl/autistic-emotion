@@ -1,0 +1,444 @@
+/* =========================================
+   全局样式重置与变量定义
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* 核心配色：科技紫 + 温暖蓝 */
+    --primary-gradient: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    --primary-color: #6a11cb;
+    --secondary-color: #2575fc;
+    --accent-color: #00d2ff;
+
+    /* 功能色 */
+    --success-color: #00b894;
+    --error-color: #ff7675;
+    --info-color: #74b9ff;
+    --warning-color: #ffeaa7;
+
+    /* 背景与文本 */
+    --bg-body: #f5f7fa;
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    --glass-border: rgba(255, 255, 255, 0.6);
+    --text-main: #2d3436;
+    --text-sub: #636e72;
+
+    /* 阴影与圆角 */
+    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.08);
+    --shadow-hover: 0 15px 35px rgba(37, 117, 252, 0.2);
+    --radius-lg: 24px;
+    --radius-md: 12px;
+    --radius-pill: 50px;
+
+    /* 动画 */
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* =========================================
+   基础布局
+   ========================================= */
+body {
+    font-family: 'Noto Sans SC', 'Segoe UI', system-ui, sans-serif;
+    background: #f5f7fa;
+    /* 如果 HTML 中添加了背景装饰圆圈，这里可以保持透明或浅色 */
+    background-image: radial-gradient(circle at 10% 20%, rgba(106, 17, 203, 0.05) 0%, transparent 20%),
+                      radial-gradient(circle at 90% 80%, rgba(37, 117, 252, 0.05) 0%, transparent 20%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-main);
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* =========================================
+   主容器 (玻璃拟态)
+   ========================================= */
+.container {
+    width: 100%;
+    max-width: 500px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 40px 30px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--glass-border);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.container:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
+}
+
+/* =========================================
+   标题区域
+   ========================================= */
+h1 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 8px;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.5px;
+}
+
+.subtitle {
+    text-align: center;
+    color: var(--text-sub);
+    font-size: 0.95rem;
+    margin-bottom: 35px;
+    font-weight: 500;
+}
+
+h3 {
+    font-size: 1.25rem;
+    color: var(--text-main);
+    margin-bottom: 20px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+h3::before {
+    content: '✨';
+    font-size: 1.2em;
+}
+
+/* =========================================
+   上传区域 (核心改造)
+   ========================================= */
+.upload-area {
+    position: relative;
+    background: rgba(248, 250, 252, 0.6);
+    border: 2px dashed #cbd5e0;
+    border-radius: var(--radius-md);
+    padding: 40px 20px;
+    text-align: center;
+    transition: var(--transition);
+    cursor: pointer;
+    margin-bottom: 25px;
+}
+
+.upload-area:hover,
+.upload-area.dragover {
+    border-color: var(--secondary-color);
+    background: rgba(37, 117, 252, 0.05);
+    transform: scale(1.02);
+    box-shadow: 0 5px 15px rgba(37, 117, 252, 0.1);
+}
+
+/* 隐藏原始 input，让整个区域可点击 */
+#imageInput {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.upload-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 12px;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: var(--transition);
+}
+
+.upload-area:hover .upload-icon {
+    transform: scale(1.1);
+}
+
+.upload-text {
+    color: var(--text-sub);
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    pointer-events: none; /* 防止文字阻挡点击 */
+}
+
+/* =========================================
+   按钮样式 (渐变与光影)
+   ========================================= */
+button {
+    padding: 12px 35px;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    outline: none;
+    letter-spacing: 0.5px;
+}
+
+/* 主按钮：上传并识别 */
+#uploadBtn {
+    background: var(--primary-gradient);
+    color: white;
+    box-shadow: 0 4px 15px rgba(37, 117, 252, 0.3);
+    z-index: 1;
+    pointer-events: auto; /* 确保按钮在 upload-area 内可点击（如果 input 没覆盖住）*/
+}
+
+/* 修复：因为 input 覆盖了整个 area，按钮实际上看起来是装饰，
+   但为了逻辑正确，我们让 input 覆盖，点击任意处触发 input，
+   或者你可以调整 HTML 让 button 在 input 外面。
+   在此 CSS 中，假设 HTML 结构已调整或 JS 处理了点击事件冒泡。
+   如果 input 完全覆盖，按钮点击事件会被 input 拦截，这是预期的（触发文件选择）。
+*/
+
+#uploadBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(37, 117, 252, 0.4);
+}
+
+#uploadBtn:active {
+    transform: translateY(1px);
+}
+
+/* 次要按钮：重新查询 */
+#queryBtn {
+    background: white;
+    color: var(--secondary-color);
+    border: 2px solid var(--secondary-color);
+    width: 100%;
+    margin-top: 20px;
+    box-shadow: none;
+}
+
+#queryBtn:hover {
+    background: var(--secondary-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(37, 117, 252, 0.2);
+}
+
+button:disabled {
+    background: #dfe6e9 !important;
+    color: #b2bec3 !important;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+    border-color: #dfe6e9 !important;
+}
+
+/* 加载动画 */
+button.loading {
+    color: transparent !important;
+    pointer-events: none;
+}
+
+button.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* =========================================
+   结果展示区域 (卡片化)
+   ========================================= */
+.result-area {
+    margin-top: 30px;
+    background: #fff;
+    border-radius: var(--radius-md);
+    padding: 25px;
+    box-shadow: inset 0 2px 10px rgba(0,0,0,0.02);
+    border: 1px solid #edf2f7;
+    animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    text-align: left;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.result-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 0.95rem;
+}
+
+.result-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.result-label {
+    color: var(--text-sub);
+    font-weight: 500;
+}
+
+.result-value {
+    font-weight: 700;
+    color: var(--primary-color);
+    background: rgba(106, 17, 203, 0.06);
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    min-width: 80px;
+    text-align: center;
+}
+
+/* 特殊样式：情绪标签 */
+#emotion {
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+    color: #d63384;
+    box-shadow: 0 4px 10px rgba(255, 154, 158, 0.3);
+    font-size: 1rem;
+    padding: 6px 16px;
+}
+
+/* 特殊样式：ID 使用等宽字体 */
+#requestId {
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 0.8rem;
+    letter-spacing: -0.5px;
+}
+
+/* =========================================
+   消息提示区域
+   ========================================= */
+.msg-area {
+    margin-top: 20px;
+    min-height: 24px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: center;
+    padding: 10px;
+    border-radius: var(--radius-md);
+    transition: var(--transition);
+    opacity: 0;
+    transform: translateY(-5px);
+}
+
+.msg-area.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.msg-area.success {
+    background-color: rgba(0, 184, 148, 0.1);
+    color: #00b894;
+    border: 1px solid rgba(0, 184, 148, 0.2);
+}
+
+.msg-area.error {
+    background-color: rgba(255, 118, 117, 0.1);
+    color: #ff7675;
+    border: 1px solid rgba(255, 118, 117, 0.2);
+}
+
+.msg-area.info {
+    background-color: rgba(37, 117, 252, 0.1);
+    color: #2575fc;
+    border: 1px solid rgba(37, 117, 252, 0.2);
+}
+
+/* =========================================
+   响应式设计
+   ========================================= */
+@media (max-width: 600px) {
+    body {
+        padding: 15px;
+        align-items: flex-start; /* 移动端顶部对齐 */
+    }
+
+    .container {
+        padding: 30px 20px;
+        max-width: 100%;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .upload-area {
+        padding: 30px 15px;
+    }
+
+    .upload-icon {
+        font-size: 2.5rem;
+    }
+
+    .result-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .result-value {
+        width: 100%;
+        text-align: left;
+    }
+}
+
+/* =========================================
+   无障碍与高对比度
+   ========================================= */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+@media (prefers-contrast: high) {
+    :root {
+        --primary-gradient: linear-gradient(135deg, #0000CC 0%, #0000FF 100%);
+        --glass-bg: #FFFFFF;
+        --glass-border: #000000;
+        --text-main: #000000;
+        --text-sub: #333333;
+        --shadow-soft: 0 0 0 2px #000000;
+        --shadow-hover: 0 0 0 4px #0000CC;
+    }
+
+    .result-value {
+        border: 2px solid #000;
+        background: #fff;
+    }
+
+    #emotion {
+        background: #fff;
+        border: 2px solid #d63384;
+        color: #d63384;
+    }
+}
