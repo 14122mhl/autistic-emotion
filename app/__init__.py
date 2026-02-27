@@ -117,7 +117,9 @@ def configure_logging(app):
     # 创建StreamHandler（控制台）
     stream_handler = logging.StreamHandler()
     stream_handler.setLevel(logging.INFO)
-    stream_handler.setFormatter(logging.Formatter(log_format))
+    # 创建一个不使用颜色的格式化器
+    formatter = logging.Formatter(log_format)
+    stream_handler.setFormatter(formatter)
     
     # 添加处理器
     app.logger.addHandler(file_handler)
