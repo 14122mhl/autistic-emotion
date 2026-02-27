@@ -352,30 +352,10 @@
                 dropZone.addEventListener(eventName, () => dropZone.classList.remove('dragover'), false);
             });
 
-            // 文件选择后显示文件名并校验
+            // 文件选择后显示文件名
             imageInput.addEventListener('change', function() {
                 if (this.files && this.files[0]) {
-                    const file = this.files[0];
-                    
-                    // 校验文件类型
-                    const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
-                    if (!allowedTypes.includes(file.type)) {
-                        msgArea.textContent = "请选择jpg、png或gif格式的图片";
-                        msgArea.style.color = "#e17055";
-                        this.value = ''; // 清空选择
-                        return;
-                    }
-                    
-                    // 校验文件大小（最大5MB）
-                    const maxSize = 5 * 1024 * 1024; // 5MB
-                    if (file.size > maxSize) {
-                        msgArea.textContent = "图片大小不能超过5MB";
-                        msgArea.style.color = "#e17055";
-                        this.value = ''; // 清空选择
-                        return;
-                    }
-                    
-                    document.querySelector('.upload-text').textContent = `已选择: ${file.name}`;
+                    document.querySelector('.upload-text').textContent = `已选择: ${this.files[0].name}`;
                     document.querySelector('.upload-text').style.color = '#2575fc';
                     document.querySelector('.upload-text').style.fontWeight = 'bold';
                     msgArea.textContent = "";
@@ -383,15 +363,9 @@
             });
 
             // 上传并识别按钮点击事件
-            uploadBtn.addEventListener("click", async function(e) {
+            uploadBtn.addEventListener("click", function(e) {
                 e.preventDefault();
                 e.stopPropagation();
-                
-                // 存在性校验
-                if (!uploadBtn || !imageInput || !msgArea || !resultArea) {
-                    console.error("DOM元素不存在");
-                    return;
-                }
                 
                 const file = imageInput.files[0];
                 if (!file) {
@@ -401,58 +375,38 @@
                 }
 
                 // 显示加载状态
-                const originalText = uploadBtn.textContent;
-                uploadBtn.textContent = "识别中...";
-                uploadBtn.disabled = true;
                 msgArea.textContent = "正在上传和识别...";
                 msgArea.style.color = "#6a11cb";
+                uploadBtn.disabled = true;
 
                 // 构建FormData
                 const formData = new FormData();
                 formData.append("image", file);
 
-                try {
-                    // 发送请求（使用相对路径，添加10秒超时）
-                    const controller = new AbortController();
-                    const timeoutId = setTimeout(() => controller.abort(), 10000);
-                    
-                    const response = await fetch("/api/emotion/detect", {
-                        method: "POST",
-                        body: formData,
-                        signal: controller.signal
-                    });
-                    
-                    clearTimeout(timeoutId);
-                    
+                // 发送请求
+                fetch("/api/emotion/detect", {
+                    method: "POST",
+                    body: formData
+                })
+                .then(response => {
                     if (!response.ok) {
-                        if (response.status === 404) {
-                            throw new Error("请求的接口不存在");
-                        } else if (response.status === 500) {
-                            throw new Error("服务器内部错误");
-                        } else {
-                            throw new Error(`请求失败，状态码：${response.status}`);
-                        }
+                        throw new Error(`HTTP error! status: ${response.status}`);
                     }
-                    
-                    const data = await response.json();
+                    return response.json();
+                })
+                .then(data => {
+                    uploadBtn.disabled = false;
                     
                     if (data.request_id) {
                         // 显示结果
                         resultArea.style.display = "block";
-                        
-                        // 存在性校验
-                        const requestIdEl = document.getElementById("requestId");
-                        const emotionEl = document.getElementById("emotion");
-                        const confidenceEl = document.getElementById("confidence");
-                        const detectTimeEl = document.getElementById("detectTime");
-                        
-                        if (requestIdEl) requestIdEl.textContent = data.request_id;
-                        if (emotionEl) emotionEl.textContent = data.emotion;
-                        if (confidenceEl) confidenceEl.textContent = data.confidence;
-                        if (detectTimeEl) detectTimeEl.textContent = data.detect_time;
+                        document.getElementById("requestId").textContent = data.request_id;
+                        document.getElementById("emotion").textContent = data.emotion;
+                        document.getElementById("confidence").textContent = data.confidence;
+                        document.getElementById("detectTime").textContent = data.detect_time;
 
                         currentRequestId = data.request_id;
-                        msgArea.textContent = "识别成功";
+                        msgArea.textContent = "识别成功，你简直牛逼克拉斯";
                         msgArea.style.color = "#00b894";
                         
                         // 滚动到底部
@@ -461,33 +415,19 @@
                         msgArea.textContent = data.error || "识别失败";
                         msgArea.style.color = "#e17055";
                     }
-                } catch (error) {
-                    if (error.name === 'AbortError') {
-                        msgArea.textContent = "请求超时，请检查网络连接";
-                    } else if (error.message.includes('Failed to fetch')) {
-                        msgArea.textContent = "网络连接失败，请检查网络设置";
-                    } else {
-                        msgArea.textContent = "请求失败：" + error.message;
-                    }
+                })
+                .catch(error => {
+                    uploadBtn.disabled = false;
+                    msgArea.textContent = "请求失败：" + error.message;
                     msgArea.style.color = "#e17055";
                     console.error("Error:", error);
-                } finally {
-                    // 恢复按钮状态
-                    uploadBtn.textContent = originalText;
-                    uploadBtn.disabled = false;
-                }
+                });
             });
 
             // 重新查询结果按钮点击事件
-            queryBtn.addEventListener("click", async function(e) {
+            queryBtn.addEventListener("click", function(e) {
                 e.preventDefault();
                 e.stopPropagation();
-                
-                // 存在性校验
-                if (!queryBtn || !msgArea) {
-                    console.error("DOM元素不存在");
-                    return;
-                }
                 
                 if (!currentRequestId) {
                     msgArea.textContent = "暂无请求ID";
@@ -496,66 +436,37 @@
                 }
 
                 // 显示加载状态
-                const originalText = queryBtn.textContent;
-                queryBtn.textContent = "查询中...";
-                queryBtn.disabled = true;
                 msgArea.textContent = "正在查询结果...";
                 msgArea.style.color = "#6a11cb";
+                queryBtn.disabled = true;
 
-                try {
-                    // 发送请求（使用相对路径，添加10秒超时）
-                    const controller = new AbortController();
-                    const timeoutId = setTimeout(() => controller.abort(), 10000);
-                    
-                    const response = await fetch(`/api/emotion/query/${currentRequestId}`, {
-                        signal: controller.signal
-                    });
-                    
-                    clearTimeout(timeoutId);
-                    
+                fetch(`http://192.168.50.49:5000/api/emotion/query/${currentRequestId}`)
+                .then(response => {
                     if (!response.ok) {
-                        if (response.status === 404) {
-                            throw new Error("请求的接口不存在");
-                        } else if (response.status === 500) {
-                            throw new Error("服务器内部错误");
-                        } else {
-                            throw new Error(`请求失败，状态码：${response.status}`);
-                        }
+                        throw new Error(`HTTP error! status: ${response.status}`);
                     }
-                    
-                    const data = await response.json();
+                    return response.json();
+                })
+                .then(data => {
+                    queryBtn.disabled = false;
                     
                     if (data.request_id) {
-                        // 存在性校验
-                        const emotionEl = document.getElementById("emotion");
-                        const confidenceEl = document.getElementById("confidence");
-                        const detectTimeEl = document.getElementById("detectTime");
-                        
-                        if (emotionEl) emotionEl.textContent = data.emotion;
-                        if (confidenceEl) confidenceEl.textContent = data.confidence;
-                        if (detectTimeEl) detectTimeEl.textContent = data.detect_time;
-                        
+                        document.getElementById("emotion").textContent = data.emotion;
+                        document.getElementById("confidence").textContent = data.confidence;
+                        document.getElementById("detectTime").textContent = data.detect_time;
                         msgArea.textContent = "查询成功";
                         msgArea.style.color = "#00b894";
                     } else {
                         msgArea.textContent = data.error || "查询失败";
                         msgArea.style.color = "#e17055";
                     }
-                } catch (error) {
-                    if (error.name === 'AbortError') {
-                        msgArea.textContent = "请求超时，请检查网络连接";
-                    } else if (error.message.includes('Failed to fetch')) {
-                        msgArea.textContent = "网络连接失败，请检查网络设置";
-                    } else {
-                        msgArea.textContent = "查询失败：" + error.message;
-                    }
+                })
+                .catch(error => {
+                    queryBtn.disabled = false;
+                    msgArea.textContent = "查询失败：" + error.message;
                     msgArea.style.color = "#e17055";
                     console.error("Error:", error);
-                } finally {
-                    // 恢复按钮状态
-                    queryBtn.textContent = originalText;
-                    queryBtn.disabled = false;
-                }
+                });
             });
         });
     </script>
