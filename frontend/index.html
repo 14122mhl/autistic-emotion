@@ -384,7 +384,7 @@
                 formData.append("image", file);
 
                 // 发送请求
-                fetch("http://192.168.50.49:5000/api/emotion/detect", {
+                fetch("/api/emotion/detect", {
                     method: "POST",
                     body: formData
                 })
@@ -406,7 +406,7 @@
                         document.getElementById("detectTime").textContent = data.detect_time;
 
                         currentRequestId = data.request_id;
-                        msgArea.textContent = "识别成功";
+                        msgArea.textContent = "识别成功你简直牛逼克拉斯";
                         msgArea.style.color = "#00b894";
                         
                         // 滚动到底部
