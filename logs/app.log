@@ -488,3 +488,5 @@
 2026-02-28 10:21:10,631 - root - INFO - Function init_face_detector executed in 29.50ms
 2026-02-28 10:21:10,661 - werkzeug - WARNING -  * Debugger is active!
 2026-02-28 10:21:10,673 - werkzeug - INFO -  * Debugger PIN: 891-597-595
+2026-02-28 10:38:00,750 - root - INFO - 日志系统初始化完成
+2026-02-28 10:38:00,774 - root - INFO - Memory usage: RSS=82.95MB, VMS=66.27MB, Percent=0.53%
