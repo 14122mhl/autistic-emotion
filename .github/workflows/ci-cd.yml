@@ -71,9 +71,9 @@ jobs:
       run: |
         echo "=== Deploying to server 192.168.70.129 ==="
         # 连接服务器并执行部署命令
-        ssh ubuntu@192.168.70.129 << 'EOF'
+        ssh emotion@192.168.70.129 << 'EOF'
           # 进入项目目录
-          cd /home/ubuntu/autistic-easy
+          cd /home/emotion/autistic-easy
           
           # 拉取最新代码
           git pull origin test
@@ -83,10 +83,15 @@ jobs:
           python3 -m pip install -r requirements.txt
           
           # 重启服务（假设使用systemd管理）
-          sudo systemctl restart autistic-easy.service
-          
-          # 检查服务状态
-          sudo systemctl status autistic-easy.service
+          # 尝试使用sudo重启服务
+          if command -v sudo &> /dev/null; then
+            sudo systemctl restart autistic-easy.service
+            sudo systemctl status autistic-easy.service
+          else
+            # 如果没有sudo权限，尝试直接重启
+            systemctl restart autistic-easy.service
+            systemctl status autistic-easy.service
+          fi
         EOF
     
     - name: Deployment status
