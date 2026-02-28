@@ -359,3 +359,132 @@
 2026-02-27 17:15:52,738 - app - INFO - [b768ceab-a768-4fc6-bddc-e9b72d4a3545] 数据库保存完成，耗时: 33.06ms
 2026-02-27 17:15:52,740 - app - INFO - [b768ceab-a768-4fc6-bddc-e9b72d4a3545] Redis缓存完成，耗时: 1.54ms
 2026-02-27 17:15:52,740 - app - INFO - [b768ceab-a768-4fc6-bddc-e9b72d4a3545] 情绪识别请求处理完成，总耗时: 305.04ms
+2026-02-27 17:21:47,409 - app - INFO - [93a58f79-e67b-4f24-be2b-9a5d46403f59] 开始处理情绪识别请求
+2026-02-27 17:21:47,410 - app - INFO - [93a58f79-e67b-4f24-be2b-9a5d46403f59] 读取图像完成，耗时: 0.00ms
+2026-02-27 17:21:47.423 | INFO     | app.utils.face_detect:resize_image:39 - 图片压缩完成，耗时: 2.05ms
+2026-02-27 17:21:47.459 | INFO     | app.utils.face_detect:detect_face:81 - 人脸检测完成，耗时: 47.77ms, 检测到 1 个人脸
+2026-02-27 17:21:47,459 - app - INFO - [93a58f79-e67b-4f24-be2b-9a5d46403f59] 人脸检测完成，耗时: 47.77ms, 结果: True
+2026-02-27 17:21:47,460 - app - INFO - [93a58f79-e67b-4f24-be2b-9a5d46403f59] 情绪识别完成，耗时: 0.00ms, 情绪: 中性, 置信度: 0.76
+2026-02-27 17:21:47,466 - app - INFO - [93a58f79-e67b-4f24-be2b-9a5d46403f59] 数据库保存完成，耗时: 5.21ms
+2026-02-27 17:21:47,468 - app - INFO - [93a58f79-e67b-4f24-be2b-9a5d46403f59] Redis缓存完成，耗时: 1.41ms
+2026-02-27 17:21:47,468 - app - INFO - [93a58f79-e67b-4f24-be2b-9a5d46403f59] 情绪识别请求处理完成，总耗时: 58.97ms
+2026-02-27 17:21:54,549 - app - INFO - [bdd2e908-4485-4599-b0ba-f18ea410641a] 开始处理情绪识别请求
+2026-02-27 17:21:54,555 - app - INFO - [bdd2e908-4485-4599-b0ba-f18ea410641a] 读取图像完成，耗时: 0.00ms
+2026-02-27 17:21:54.566 | INFO     | app.utils.face_detect:resize_image:39 - 图片压缩完成，耗时: 1.01ms
+2026-02-27 17:21:54.598 | INFO     | app.utils.face_detect:detect_face:81 - 人脸检测完成，耗时: 41.28ms, 检测到 1 个人脸
+2026-02-27 17:21:54,598 - app - INFO - [bdd2e908-4485-4599-b0ba-f18ea410641a] 人脸检测完成，耗时: 41.28ms, 结果: True
+2026-02-27 17:21:54,599 - app - INFO - [bdd2e908-4485-4599-b0ba-f18ea410641a] 情绪识别完成，耗时: 0.00ms, 情绪: 开心, 置信度: 0.74
+2026-02-27 17:21:54,615 - app - INFO - [bdd2e908-4485-4599-b0ba-f18ea410641a] 数据库保存完成，耗时: 15.47ms
+2026-02-27 17:21:54,617 - app - INFO - [bdd2e908-4485-4599-b0ba-f18ea410641a] Redis缓存完成，耗时: 1.74ms
+2026-02-27 17:21:54,618 - app - INFO - [bdd2e908-4485-4599-b0ba-f18ea410641a] 情绪识别请求处理完成，总耗时: 67.77ms
+2026-02-27 17:21:57,317 - app - INFO - [5e3b616e-fc45-4965-8eff-3f4c0a17e9c7] 开始处理情绪识别请求
+2026-02-27 17:21:57,319 - app - INFO - [5e3b616e-fc45-4965-8eff-3f4c0a17e9c7] 读取图像完成，耗时: 0.00ms
+2026-02-27 17:21:57.330 | INFO     | app.utils.face_detect:resize_image:39 - 图片压缩完成，耗时: 1.58ms
+2026-02-27 17:21:57.362 | INFO     | app.utils.face_detect:detect_face:81 - 人脸检测完成，耗时: 42.31ms, 检测到 1 个人脸
+2026-02-27 17:21:57,363 - app - INFO - [5e3b616e-fc45-4965-8eff-3f4c0a17e9c7] 人脸检测完成，耗时: 43.09ms, 结果: True
+2026-02-27 17:21:57,363 - app - INFO - [5e3b616e-fc45-4965-8eff-3f4c0a17e9c7] 情绪识别完成，耗时: 0.00ms, 情绪: 开心, 置信度: 0.83
+2026-02-27 17:21:57,379 - app - INFO - [5e3b616e-fc45-4965-8eff-3f4c0a17e9c7] 数据库保存完成，耗时: 14.91ms
+2026-02-27 17:21:57,381 - app - INFO - [5e3b616e-fc45-4965-8eff-3f4c0a17e9c7] Redis缓存完成，耗时: 1.49ms
+2026-02-27 17:21:57,381 - app - INFO - [5e3b616e-fc45-4965-8eff-3f4c0a17e9c7] 情绪识别请求处理完成，总耗时: 63.57ms
+2026-02-27 17:21:58,072 - app - INFO - [1ca4fe5f-3f77-45c0-999e-3f9ca23af879] 开始处理情绪识别请求
+2026-02-27 17:21:58,076 - app - INFO - [1ca4fe5f-3f77-45c0-999e-3f9ca23af879] 读取图像完成，耗时: 0.00ms
+2026-02-27 17:21:58.087 | INFO     | app.utils.face_detect:resize_image:39 - 图片压缩完成，耗时: 1.01ms
+2026-02-27 17:21:58.121 | INFO     | app.utils.face_detect:detect_face:81 - 人脸检测完成，耗时: 43.25ms, 检测到 1 个人脸
+2026-02-27 17:21:58,125 - app - INFO - [1ca4fe5f-3f77-45c0-999e-3f9ca23af879] 人脸检测完成，耗时: 47.82ms, 结果: True
+2026-02-27 17:21:58,125 - app - INFO - [1ca4fe5f-3f77-45c0-999e-3f9ca23af879] 情绪识别完成，耗时: 0.00ms, 情绪: 悲伤, 置信度: 0.75
+2026-02-27 17:21:58,130 - app - INFO - [1ca4fe5f-3f77-45c0-999e-3f9ca23af879] 数据库保存完成，耗时: 3.06ms
+2026-02-27 17:21:58,131 - app - INFO - [1ca4fe5f-3f77-45c0-999e-3f9ca23af879] Redis缓存完成，耗时: 0.00ms
+2026-02-27 17:21:58,132 - app - INFO - [1ca4fe5f-3f77-45c0-999e-3f9ca23af879] 情绪识别请求处理完成，总耗时: 59.21ms
+2026-02-27 17:21:58,844 - app - INFO - [0bbe5b9a-0f18-4a4f-958b-eb82c3c052e7] 开始处理情绪识别请求
+2026-02-27 17:21:58,845 - app - INFO - [0bbe5b9a-0f18-4a4f-958b-eb82c3c052e7] 读取图像完成，耗时: 0.00ms
+2026-02-27 17:21:58.856 | INFO     | app.utils.face_detect:resize_image:39 - 图片压缩完成，耗时: 0.64ms
+2026-02-27 17:21:58.886 | INFO     | app.utils.face_detect:detect_face:81 - 人脸检测完成，耗时: 39.23ms, 检测到 1 个人脸
+2026-02-27 17:21:58,887 - app - INFO - [0bbe5b9a-0f18-4a4f-958b-eb82c3c052e7] 人脸检测完成，耗时: 40.23ms, 结果: True
+2026-02-27 17:21:58,888 - app - INFO - [0bbe5b9a-0f18-4a4f-958b-eb82c3c052e7] 情绪识别完成，耗时: 0.00ms, 情绪: 惊讶, 置信度: 0.7
+2026-02-27 17:21:58,892 - app - INFO - [0bbe5b9a-0f18-4a4f-958b-eb82c3c052e7] 数据库保存完成，耗时: 3.56ms
+2026-02-27 17:21:58,894 - app - INFO - [0bbe5b9a-0f18-4a4f-958b-eb82c3c052e7] Redis缓存完成，耗时: 0.51ms
+2026-02-27 17:21:58,895 - app - INFO - [0bbe5b9a-0f18-4a4f-958b-eb82c3c052e7] 情绪识别请求处理完成，总耗时: 50.40ms
+2026-02-27 17:21:59,482 - app - INFO - [51c9caed-383b-4830-a794-76425e3b1d84] 开始处理情绪识别请求
+2026-02-27 17:21:59,484 - app - INFO - [51c9caed-383b-4830-a794-76425e3b1d84] 读取图像完成，耗时: 0.00ms
+2026-02-27 17:21:59.507 | INFO     | app.utils.face_detect:resize_image:39 - 图片压缩完成，耗时: 1.01ms
+2026-02-27 17:21:59.538 | INFO     | app.utils.face_detect:detect_face:81 - 人脸检测完成，耗时: 40.83ms, 检测到 1 个人脸
+2026-02-27 17:21:59,538 - app - INFO - [51c9caed-383b-4830-a794-76425e3b1d84] 人脸检测完成，耗时: 41.34ms, 结果: True
+2026-02-27 17:21:59,539 - app - INFO - [51c9caed-383b-4830-a794-76425e3b1d84] 情绪识别完成，耗时: 0.00ms, 情绪: 惊讶, 置信度: 0.81
+2026-02-27 17:21:59,543 - app - INFO - [51c9caed-383b-4830-a794-76425e3b1d84] 数据库保存完成，耗时: 4.33ms
+2026-02-27 17:21:59,543 - app - INFO - [51c9caed-383b-4830-a794-76425e3b1d84] Redis缓存完成，耗时: 0.00ms
+2026-02-27 17:21:59,545 - app - INFO - [51c9caed-383b-4830-a794-76425e3b1d84] 情绪识别请求处理完成，总耗时: 62.45ms
+2026-02-27 17:22:00,097 - app - INFO - [4315e984-2516-42a2-9922-e05b1431cfb9] 开始处理情绪识别请求
+2026-02-27 17:22:00,100 - app - INFO - [4315e984-2516-42a2-9922-e05b1431cfb9] 读取图像完成，耗时: 0.00ms
+2026-02-27 17:22:00.110 | INFO     | app.utils.face_detect:resize_image:39 - 图片压缩完成，耗时: 1.54ms
+2026-02-27 17:22:00.143 | INFO     | app.utils.face_detect:detect_face:81 - 人脸检测完成，耗时: 43.44ms, 检测到 1 个人脸
+2026-02-27 17:22:00,145 - app - INFO - [4315e984-2516-42a2-9922-e05b1431cfb9] 人脸检测完成，耗时: 45.06ms, 结果: True
+2026-02-27 17:22:00,145 - app - INFO - [4315e984-2516-42a2-9922-e05b1431cfb9] 情绪识别完成，耗时: 0.00ms, 情绪: 惊讶, 置信度: 0.97
+2026-02-27 17:22:00,160 - app - INFO - [4315e984-2516-42a2-9922-e05b1431cfb9] 数据库保存完成，耗时: 13.89ms
+2026-02-27 17:22:00,162 - app - INFO - [4315e984-2516-42a2-9922-e05b1431cfb9] Redis缓存完成，耗时: 0.50ms
+2026-02-27 17:22:00,163 - app - INFO - [4315e984-2516-42a2-9922-e05b1431cfb9] 情绪识别请求处理完成，总耗时: 66.11ms
+2026-02-27 17:28:32,037 - app - INFO - Flask应用初始化完成，日志系统配置成功
+2026-02-27 17:28:36,149 - app - INFO - Redis初始化成功
+2026-02-27 17:28:36.436 | INFO     | app.utils.face_detect:init_face_detector:18 - 人脸检测器初始化完成，耗时: 21.46ms
+2026-02-27 17:28:37,424 - app - INFO - Flask应用初始化完成，日志系统配置成功
+2026-02-27 17:28:41,559 - app - INFO - Redis初始化成功
+2026-02-27 17:28:41.920 | INFO     | app.utils.face_detect:init_face_detector:18 - 人脸检测器初始化完成，耗时: 46.61ms
+2026-02-28 10:17:06,937 - root - INFO - 日志系统初始化完成
+2026-02-28 10:17:06,943 - app - INFO - Flask应用初始化完成，日志系统配置成功
+2026-02-28 10:17:06,943 - app - INFO - Flask应用初始化完成，日志系统配置成功
+2026-02-28 10:17:11,082 - app - INFO - Redis初始化成功
+2026-02-28 10:17:11,082 - app - INFO - Redis初始化成功
+2026-02-28 10:17:11,515 - root - INFO - 人脸检测器初始化完成
+2026-02-28 10:17:11,517 - root - INFO - Function init_face_detector executed in 26.15ms
+2026-02-28 10:17:11,559 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.20.38.48:5000
+2026-02-28 10:17:11,559 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-02-28 10:17:11,561 - werkzeug - INFO -  * Restarting with stat
+2026-02-28 10:17:12,519 - root - INFO - 日志系统初始化完成
+2026-02-28 10:17:12,526 - app - INFO - Flask应用初始化完成，日志系统配置成功
+2026-02-28 10:17:12,526 - app - INFO - Flask应用初始化完成，日志系统配置成功
+2026-02-28 10:17:16,634 - app - INFO - Redis初始化成功
+2026-02-28 10:17:16,634 - app - INFO - Redis初始化成功
+2026-02-28 10:17:16,874 - root - INFO - 人脸检测器初始化完成
+2026-02-28 10:17:16,874 - root - INFO - Function init_face_detector executed in 22.84ms
+2026-02-28 10:17:16,898 - werkzeug - WARNING -  * Debugger is active!
+2026-02-28 10:17:16,907 - werkzeug - INFO -  * Debugger PIN: 891-597-595
+2026-02-28 10:17:24,396 - werkzeug - INFO - 10.20.38.48 - - [28/Feb/2026 10:17:24] "GET / HTTP/1.1" 200 -
+2026-02-28 10:17:25,071 - werkzeug - INFO - 10.20.38.48 - - [28/Feb/2026 10:17:25] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-02-28 10:17:29,933 - root - WARNING - psutil not installed, memory monitoring disabled
+2026-02-28 10:17:29,933 - root - INFO - [b4f8d87c-c8c8-449c-bf12-675ee98afe26] 开始处理情绪识别请求
+2026-02-28 10:17:29,949 - root - INFO - [b4f8d87c-c8c8-449c-bf12-675ee98afe26] 读取图像完成，耗时: 0.00ms
+2026-02-28 10:17:29,996 - root - INFO - 图片压缩完成，目标尺寸: 640x480
+2026-02-28 10:17:29,996 - root - INFO - Function resize_image executed in 22.73ms
+2026-02-28 10:17:30,519 - root - INFO - 人脸检测完成，检测到 1 个人脸
+2026-02-28 10:17:30,520 - root - INFO - Function detect_face executed in 570.80ms
+2026-02-28 10:17:30,520 - root - INFO - [b4f8d87c-c8c8-449c-bf12-675ee98afe26] 人脸检测完成，耗时: 570.80ms, 结果: True
+2026-02-28 10:17:30,520 - root - INFO - [b4f8d87c-c8c8-449c-bf12-675ee98afe26] 情绪识别完成，耗时: 0.00ms, 情绪: 开心, 置信度: 0.87
+2026-02-28 10:17:30,725 - root - INFO - [b4f8d87c-c8c8-449c-bf12-675ee98afe26] 数据库保存完成，耗时: 205.29ms
+2026-02-28 10:17:30,728 - root - INFO - [b4f8d87c-c8c8-449c-bf12-675ee98afe26] Redis缓存完成，耗时: 2.57ms
+2026-02-28 10:17:30,729 - root - INFO - [b4f8d87c-c8c8-449c-bf12-675ee98afe26] 情绪识别请求处理完成，总耗时: 795.33ms
+2026-02-28 10:17:30,729 - root - INFO - Function detect_emotion executed in 798.53ms
+2026-02-28 10:17:30,729 - werkzeug - INFO - 10.20.38.48 - - [28/Feb/2026 10:17:30] "POST /api/emotion/detect HTTP/1.1" 200 -
+2026-02-28 10:21:00,919 - root - INFO - 日志系统初始化完成
+2026-02-28 10:21:00,926 - app - INFO - Flask应用初始化完成，日志系统配置成功
+2026-02-28 10:21:00,926 - app - INFO - Flask应用初始化完成，日志系统配置成功
+2026-02-28 10:21:05,052 - app - INFO - Redis初始化成功
+2026-02-28 10:21:05,052 - app - INFO - Redis初始化成功
+2026-02-28 10:21:05,275 - root - INFO - 人脸检测器初始化完成
+2026-02-28 10:21:05,275 - root - INFO - Function init_face_detector executed in 20.07ms
+2026-02-28 10:21:05,304 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.20.38.48:5000
+2026-02-28 10:21:05,304 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-02-28 10:21:05,306 - werkzeug - INFO -  * Restarting with stat
+2026-02-28 10:21:06,217 - root - INFO - 日志系统初始化完成
+2026-02-28 10:21:06,222 - app - INFO - Flask应用初始化完成，日志系统配置成功
+2026-02-28 10:21:06,222 - app - INFO - Flask应用初始化完成，日志系统配置成功
+2026-02-28 10:21:10,321 - app - INFO - Redis初始化成功
+2026-02-28 10:21:10,321 - app - INFO - Redis初始化成功
+2026-02-28 10:21:10,631 - root - INFO - 人脸检测器初始化完成
+2026-02-28 10:21:10,631 - root - INFO - Function init_face_detector executed in 29.50ms
+2026-02-28 10:21:10,661 - werkzeug - WARNING -  * Debugger is active!
+2026-02-28 10:21:10,673 - werkzeug - INFO -  * Debugger PIN: 891-597-595

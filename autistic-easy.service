@@ -1,0 +1,15 @@
+[Unit]
+Description=Autistic Easy Emotion Recognition Service
+After=network.target
+
+[Service]
+User=ubuntu
+WorkingDirectory=/home/ubuntu/autistic-easy
+ExecStart=/usr/bin/python3 /home/ubuntu/autistic-easy/run.py
+Restart=always
+RestartSec=5
+Environment=FLASK_ENV=prod
+Environment=APP_PORT=5000
+
+[Install]
+WantedBy=multi-user.target
