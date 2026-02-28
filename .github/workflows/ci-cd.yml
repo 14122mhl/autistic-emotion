@@ -63,15 +63,11 @@ jobs:
       with:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
     
-    - name: Add server to known_hosts
-      run: |
-        ssh-keyscan -H 192.168.70.129 >> ~/.ssh/known_hosts
-    
     - name: Deploy to server
       run: |
         echo "=== Deploying to server 192.168.70.129 ==="
-        # 连接服务器并执行部署命令
-        ssh emotion@192.168.70.129 << 'EOF'
+        # 连接服务器并执行部署命令，添加StrictHostKeyChecking=no参数
+        ssh -o StrictHostKeyChecking=no emotion@192.168.70.129 << 'EOF'
           # 进入项目目录
           cd /home/emotion/autistic-easy
           
