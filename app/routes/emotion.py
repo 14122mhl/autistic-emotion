@@ -17,7 +17,7 @@ CHINA_TZ = timezone(timedelta(hours=8))
 try:
     from app import redis_client
 except Exception as e:
-    logger.warning(f'Redis导入失败: {e}')
+    logging.warning(f'Redis导入失败: {e}')
     redis_client = None
 
 emotion_bp = Blueprint('emotion', __name__)
